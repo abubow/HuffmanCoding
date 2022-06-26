@@ -1,10 +1,29 @@
 #pragma once
 #include<vector>
 #include<string>
+#include<stack>
 #include<algorithm>
 #include<iostream>
-std::vector<std::pair<char, int>> wordCount(std::vector<char> chars){
-	std::vector<std::pair<char, int>> counts;
+struct Node {
+	char first;
+	int second;
+	Node* left;
+	Node* right;
+	Node() {
+		first = NULL;
+		second = 0;
+		left = nullptr;
+		right = nullptr;
+	}
+	bool operator>(Node& obj) {
+		return second > obj.second;
+	}
+	bool operator<(Node& obj) {
+		return second < obj.second;
+	}
+};
+std::vector<Node> wordCount(std::vector<char> chars){
+	std::vector<Node> counts;
 	bool alreadyExists;
 	for(auto i:chars){
 		alreadyExists=false;
@@ -17,7 +36,7 @@ std::vector<std::pair<char, int>> wordCount(std::vector<char> chars){
 		}
 		if(alreadyExists == false)
 		{
-			std::pair<char, int> res;
+			Node res;
 			res.first = i;
 			res.second = 1;
 			counts.push_back(res);
@@ -31,22 +50,14 @@ void swapV(type& a, type& b) {
 	a = b;
 	b = temp;
 }
-void heapify(std::vector < std::pair<char, int>> arr) {
-	for (int i = 0; i < arr.size()/2; i++)
-	{
-		if (arr[i] > arr[(2 * i) + 1]) {
-			swapV(arr[i], arr[(2 * i) + 1]);
-			i = (2 * i) + 1;
-		}
-		else if (arr[i] > arr[(2 * i) + 2]) {
-			swapV(arr[i], arr[(2 * i) + 2]);
-		}
-	}
-}
-std::vector < std::pair<char, std::string>> createTable(std::vector < std::pair<char, int>> counts) {
-	std::vector < std::pair<char, std::string>> table;
+std::vector <Node> createTable(std::vector <Node> counts) {
+	std::vector <Node> table;
+	std::sort(counts.begin(), counts.end(),
+		[](auto& first, auto& second) {
+			return first < second;
+		});
 	
-	for (auto var : counts)
+	for (const auto& var : counts)
 	{
 		std::cout << var.first << " : " << var.second << std::endl;
 	}
