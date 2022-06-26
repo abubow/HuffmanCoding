@@ -21,5 +21,6 @@ int main(){
 	auto counts = wordCount(input);
 	for(auto i:counts)
 		cout << i.first << " : " <<  bitset<sizeof(char)*8>(i.first) << " : " << i.second << endl;
+	auto table = createTable(counts);
 	return 0;
 }
