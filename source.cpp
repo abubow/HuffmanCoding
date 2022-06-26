@@ -2,6 +2,7 @@
 #include<fstream>
 #include<vector>
 #include<string>
+#include<bitset>
 #include"helper.h"
 using namespace std;
 
@@ -19,6 +20,6 @@ int main(){
 	}
 	auto counts = wordCount(input);
 	for(auto i:counts)
-		cout << i.first << " : " << i.second << endl;
+		cout << i.first << " : " <<  bitset<sizeof(char)*8>(i.first) << " : " << i.second << endl;
 	return 0;
 }
