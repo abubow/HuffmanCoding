@@ -50,12 +50,25 @@ void swapV(type& a, type& b) {
 	a = b;
 	b = temp;
 }
-std::vector <Node> createTable(std::vector <Node> counts) {
-	std::vector <Node> table;
+void insertInHeap(std::vector<Node> vec, Node a) {
+
+}
+Node popFromHeap(std::vector<Node> vec) {
+
+}
+Node createHuffmanTree(std::vector<Node> counts) {
 	std::sort(counts.begin(), counts.end(),
-		[](auto& first, auto& second) {
-			return first < second;
-		});
+			[](auto& first, auto& second) {
+				return first < second;
+			});
+	for (int i = 0; i < counts.size(); i++)
+	{
+
+	}
+}
+std::vector <Node> createTable(std::vector <Node>& counts) {
+	std::vector <Node> table;
+	
 	
 	for (const auto& var : counts)
 	{
