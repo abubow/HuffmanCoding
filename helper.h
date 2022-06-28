@@ -52,7 +52,7 @@ void swapV(type& a, type& b) {
 }
 void insertInHeap(std::vector<Node>& vec, Node a) {
 	vec.push_back(a);
-	for (int i = vec.size(); i < 0; i++)
+	for (int i = vec.size(); i > 0; i--)
 	{
 
 	}
