@@ -50,8 +50,12 @@ void swapV(type& a, type& b) {
 	a = b;
 	b = temp;
 }
-void insertInHeap(std::vector<Node> vec, Node a) {
+void insertInHeap(std::vector<Node>& vec, Node a) {
+	vec.push_back(a);
+	for (int i = vec.size(); i < 0; i++)
+	{
 
+	}
 }
 Node popFromHeap(std::vector<Node> vec) {
 
