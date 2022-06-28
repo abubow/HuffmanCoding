@@ -88,6 +88,12 @@ Node* popFromHeap(std::vector<Node*>& vec) {
 	}
 	return value;
 }
+std::bitset<255> getCode(Node*ptr, Node* toFind) {
+	std::bitset<255> vec;
+	if (ptr==nullptr) {
+		return vec;
+	}
+}
 Node* createHuffmanTree(std::vector<Node*> counts) {
 	std::sort(counts.begin(), counts.end(),
 			[](auto& first, auto& second) {
@@ -109,9 +115,6 @@ Node* createHuffmanTree(std::vector<Node*> counts) {
 	res->left = counts[0];
 	res->right = counts[1];
 	return res;
-}
-(Node* tree, char toFind) {
-
 }
 std::vector <Node*> createTable(std::vector <Node*>& counts) {
 	std::vector <Node*> table;
