@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(){
-	ifstream file("shakespear.txt");
+	ifstream file("D:/Codes/VS_Projects/Teaching/PresentationCode/PresentationCode/HuffmanCoding/shakespear.txt");
 	vector<char> input;
 	char ch;
 	if(!file.is_open())
@@ -21,7 +21,7 @@ int main(){
 	}
 	auto counts = wordCount(input);
 	for(auto i:counts)
-		cout << "\"" <<i.first << "\"" << " : " << bitset<sizeof(char) * 8>(i.first) << " : " << i.second << endl;
+		cout << "\"" <<i->first << "\"" << " : " << bitset<sizeof(char) * 8>(i->first) << " : " << i->second << endl;
 	auto table = createTable(counts);
 	return 0;
 }

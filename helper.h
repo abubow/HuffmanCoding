@@ -58,14 +58,14 @@ void insertInHeap(std::vector<Node*>& vec, Node* a) {
 	for (int i = vec.size() - 1; i > 0;)
 	{
 		if (vec[i / 2] > vec[i]) {
-			swap(vec[i / 2], vec[i]);
+			swapV(vec[i / 2], vec[i]);
 			i = (i / 2);
 		}
 		else
 			break;
 	}
 }
-Node* popFromHeap(std::vector<Node*> vec) {
+Node* popFromHeap(std::vector<Node*>& vec) {
 	if (!(vec.size() > 1))
 		return nullptr;
 	Node* value = vec[0];
@@ -75,11 +75,11 @@ Node* popFromHeap(std::vector<Node*> vec) {
 	{
 		int left = 2 * i + 1;
 		int right = 2 * i + 2;
-		if (vec[i] > vec[left] && vec[left] <= vec[right]) {
+		if (*vec[i] > *vec[left] && *vec[left] <= *vec[right]) {
 			swapV(vec[i], vec[left]);
 			i = left;
 		}
-		else if (vec[i] > vec[right] && vec[right] <= vec[2 * i + 1]) {
+		else if (*vec[i] > *vec[right] && *vec[right] <= *vec[left]) {
 			swapV(vec[i], vec[right]);
 			i = right;
 		}
@@ -93,23 +93,28 @@ Node* createHuffmanTree(std::vector<Node*> counts) {
 				return first < second;
 			});
 	int s = counts.size();
-	for (int i = 0; i < s-3; i++)
+	for (int i = 0; i < s-2; i++)
 	{
 		Node* top1 = popFromHeap(counts);
 		Node* top2 = popFromHeap(counts);
 		Node* collective = new Node();
 		collective->left = top1;
 		collective->right = top2;
+		collective->second = top1->second + top2->second;
 		insertInHeap(counts, collective);
 	}
+	std::cout << "Size after tree creation" << counts.size() << " \n";
+	Node* res = new Node;
+	res->left = counts[0];
+	res->right = counts[1];
+	return res;
 }
-std::vector <Node> createTable(std::vector <Node>& counts) {
-	std::vector <Node> table;
-	
-	
+std::vector <Node*> createTable(std::vector <Node*>& counts) {
+	std::vector <Node*> table;
+	Node* huffmanTree = createHuffmanTree(counts);
 	for (const auto& var : counts)
 	{
-		std::cout << var.first << " : " << var.second << std::endl;
+		std::cout << var->first << " : " << var->second << std::endl;
 	}
 	return table;
 }
