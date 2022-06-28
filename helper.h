@@ -4,9 +4,10 @@
 #include<stack>
 #include<algorithm>
 #include<iostream>
+#include<bitset>
 struct Node {
 	char first;
-	int second;
+	unsigned second;
 	Node* left;
 	Node* right;
 	Node() {
@@ -108,6 +109,9 @@ Node* createHuffmanTree(std::vector<Node*> counts) {
 	res->left = counts[0];
 	res->right = counts[1];
 	return res;
+}
+(Node* tree, char toFind) {
+
 }
 std::vector <Node*> createTable(std::vector <Node*>& counts) {
 	std::vector <Node*> table;

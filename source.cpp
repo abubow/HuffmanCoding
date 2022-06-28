@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(){
-	ifstream file("D:/Codes/VS_Projects/Teaching/PresentationCode/PresentationCode/HuffmanCoding/shakespear.txt");
+	ifstream file("input.txt");
 	vector<char> input;
 	char ch;
 	if(!file.is_open())
