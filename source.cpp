@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(){
-	ifstream file("input.txt");
+	ifstream file("HuffmanCoding/shakespear.txt");
 	vector<char> input;
 	char ch;
 	if(!file.is_open())
