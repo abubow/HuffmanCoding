@@ -5,6 +5,8 @@
 #include<algorithm>
 #include<iostream>
 #include<bitset>
+
+#define MAX_NUMBER_OF_CHRACTERS 256
 struct Node {
 	char first;
 	unsigned second;
@@ -88,10 +90,23 @@ Node* popFromHeap(std::vector<Node*>& vec) {
 	}
 	return value;
 }
-std::bitset<255> getCode(Node*ptr, Node* toFind) {
-	std::bitset<255> vec;
-	if (ptr==nullptr) {
-		return vec;
+void printHCodes(struct Node* root, int arr[], int top) {
+	if (root->left) {
+		arr[top] = 0;
+		printHCodes(root->left, arr, top + 1);
+	}
+
+	if (root->right) {
+		arr[top] = 1;
+		printHCodes(root->right, arr, top + 1);
+	}
+	if (root->left==nullptr&&root->right==nullptr) {
+		std::cout << root->first << "  | ";
+		for (int i = 0; i < top; i++)
+		{
+			std::cout << arr[i] << " ";
+		}
+		std::cout << std::endl;
 	}
 }
 Node* createHuffmanTree(std::vector<Node*> counts) {
@@ -119,6 +134,9 @@ Node* createHuffmanTree(std::vector<Node*> counts) {
 std::vector <Node*> createTable(std::vector <Node*>& counts) {
 	std::vector <Node*> table;
 	Node* huffmanTree = createHuffmanTree(counts);
+	int arr[256];
+	int top = 0;
+	printHCodes(huffmanTree, arr, 0);
 	for (const auto& var : counts)
 	{
 		std::cout << var->first << " : " << var->second << std::endl;
