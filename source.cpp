@@ -7,21 +7,13 @@
 using namespace std;
 
 int main(){
-	ifstream file("HuffmanCoding/shakespear.txt");
-	vector<char> input;
-	char ch;
-	if(!file.is_open())
-	{
-		cerr << "File did not open";
-		return 0;
-	}
-	while(!file.eof()){
-		ch = file.get();
-		input.push_back(ch);
-	}
-	auto counts = wordCount(input);
-	for(auto i:counts)
-		cout << "\"" <<i->first << "\"" << " : " << bitset<sizeof(char) * 8>(i->first) << " : " << i->second << endl;
-	auto table = createTable(counts);
+	cout << "Enter FilePath to Compress: ";
+	string name;
+	cin >> name;
+	cout << "Enter Compressed Name: ";
+	string resultName;
+	cin >> resultName;
+	compress(name, resultName);
+	
 	return 0;
 }
