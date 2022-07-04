@@ -160,8 +160,8 @@ FULL_TABLE createTable(std::vector <Node*>& counts)
 	{
 		std::cout << var->first << " : " << var->second << std::endl;
 	}*/
-	int arr[256];
-	int top = 0;
+	//int arr[256];
+	//int top = 0;
 	//printHCodes(huffmanTree, arr, 0);
 	std::bitset<MAX_NUMBER_OF_CHRACTERS + 2> codes;
 	getHCodes(huffmanTree, codes, 0, table);
@@ -217,10 +217,11 @@ void compress(std::string filename, std::string resultName) {
 	std::cout << "Compressed Size: " << (nChars+1) << " bits" << std::endl;
 	std::ofstream output(resultName);
 	std::bitset<8> bitChar;
+	std::string outStr = "";
+	double progress;
 	for (int i = 0; i < nChars; i++)
 	{
 		char c = 0;
-		bitChar.reset();
 		for (int j = 0; j < 8; j++)
 		{
 			bitChar.set(7 - j, fileBoleanRepresentation[j]);
@@ -229,10 +230,11 @@ void compress(std::string filename, std::string resultName) {
 		{
 			fileBoleanRepresentation.erase(fileBoleanRepresentation.begin()); // remove the first element from the vector
 		}
-		output << (char)bitChar.to_ulong();
-		double progress = i / (nChars*1.0);
-		std::cout << progress << std::endl;
+		outStr += (char)bitChar.to_ulong();
+		progress = i / (nChars*1.0);
+		std::printf("%f\n", progress);
 	}
+	output << outStr;
 	if ((fileBoleanRepresentation.size()) % sizeof(char)) {
 		for (int i = 0; i < 8; i++)
 		{
